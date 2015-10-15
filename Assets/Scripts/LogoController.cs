@@ -4,27 +4,59 @@ using System.Collections;
 public class LogoController : MonoBehaviour {
 
 	public LensFlare _light;
-	public PlayMakerFSM _player;
+	public AudioClip _launchSound = null;
+	public GameObject _loderLabel;
+	public GameObject[] _components;
 
-	// Use this for initialization
+	public string levelName;
+	AsyncOperation async;
+	
 	void Start () {
 		Cardboard.SDK.OnTrigger += Launch;
+		//StartLoading();
 	}
 	
-	// Update is called once per frame
 	void Update () {
 	
 	}
 
+	public void StartLoading() {
+		StartCoroutine("load");
+	}
+	
+	IEnumerator load() {
+		Debug.LogWarning("ASYNC LOAD STARTED - " +
+		                 "DO NOT EXIT PLAY MODE UNTIL SCENE LOADS... UNITY WILL CRASH");
+		async = Application.LoadLevelAsync(levelName);
+		async.allowSceneActivation = false;
+		yield return async;
+		Debug.Log("Loaded space");
+		ActivateScene();
+	}
+	
+	public void ActivateScene() {
+		async.allowSceneActivation = true;
+	}
+
+//	IEnumerator Start() {
+//		AsyncOperation async = Application.LoadLevelAsync("MainScene");
+//		yield return async;
+//
+//		Debug.Log("Loading complete");
+//	}
+
 	void Launch(){
-		_player.SendEvent("Start");
+		StartFade();
+		AudioSource.PlayClipAtPoint(_launchSound, Vector3.zero);
 	}
 
 	public void StartFade(){
+		Cardboard.SDK.OnTrigger -= Launch;
+
 		iTween.ValueTo(gameObject, iTween.Hash(
-			"time", 5.0f,
+			"time", 1.0f,
 			"from", 0.0f,
-			"to", 2.8f,
+			"to", 10.8f,
 			"onupdate", "FadeUpd",
 			"oncompletetarget", gameObject,
 			"oncomplete", "FadeEnd"
@@ -36,6 +68,11 @@ public class LogoController : MonoBehaviour {
 	}
 
 	void FadeEnd(){
-		_player.SendEvent("FINISHED");
+		foreach(GameObject _obj in _components){
+			_obj.SetActive(false);
+		}
+
+		_loderLabel.SetActive(true);
+		Application.LoadLevel("MainRoom");
 	}
 }

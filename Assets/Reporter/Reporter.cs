@@ -261,6 +261,8 @@ public class Reporter : MonoBehaviour {
 	#endif
 	string systemMemorySize ;
 
+	public bool openOnStart = false;
+
 	void Awake()
 	{
 		if( !Initialized )
@@ -382,7 +384,7 @@ public class Reporter : MonoBehaviour {
 
 		Initialized = true ;
 
-		if( show ){
+		if( show || openOnStart == true){
 			doShow();
 		}
 

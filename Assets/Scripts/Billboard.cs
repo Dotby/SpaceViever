@@ -69,7 +69,7 @@ public class Billboard : MonoBehaviour
 		}
 
 		_alpha = (_d / _onePerc);
-		Debug.Log(_alpha);
+		//Debug.Log(_alpha);
 		
 		Vector3 v = _goal.transform.position - transform.position;
 		v.x = v.z = 0.0f;
@@ -78,9 +78,9 @@ public class Billboard : MonoBehaviour
 
 		if (_head != null){
 			if (Mathf.Abs(_head.localRotation.eulerAngles.y) > 330.0f || Mathf.Abs(_head.localRotation.eulerAngles.y) < 30.0f){
-				HideCanvas();
+				//HideCanvas();
 			}else{
-				ShowCanvas();
+				//ShowCanvas();
 			}
 
 		}
