@@ -231,6 +231,13 @@
      <Compile Include="Assets\Reporter\Test\TestReporter.cs" />
      <Compile Include="Assets\Scenes\InitLogger.cs" />
      <Compile Include="Assets\Scripts\Billboard.cs" />
+     <Compile Include="Assets\Scripts\BundlesManager\LoadBundle.cs" />
+     <Compile Include="Assets\Scripts\BundlesManager\NotWorking\AssetBundleManager.cs" />
+     <Compile Include="Assets\Scripts\BundlesManager\NotWorking\AssetBundleSample.cs" />
+     <Compile Include="Assets\Scripts\BundlesManager\NotWorking\CachingLoadBundle.cs" />
+     <Compile Include="Assets\Scripts\BundlesManager\NotWorking\LoadTexture.cs" />
+     <Compile Include="Assets\Scripts\BundlesManager\NotWorking\Test.cs" />
+     <Compile Include="Assets\Scripts\BundlesManager\NotWorking\UnityEx.cs" />
      <Compile Include="Assets\Scripts\LogoController.cs" />
      <Compile Include="Assets\Scripts\Manager.cs" />
      <Compile Include="Assets\Scripts\MouseCameraControl.cs" />

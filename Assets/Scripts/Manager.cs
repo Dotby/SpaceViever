@@ -9,10 +9,23 @@ public class Manager : MonoBehaviour {
 	public SpaceObj _activeSpace = null;
 	AudioSource _snd;
 	public MouseCameraControl _mouseControl;
+	public LoadBundle _spaceLoader;
 
 	public Text _spaceInfo;
 
 	void Start () {
+
+		_spaceLoader._manager = this;
+
+		#if   UNITY_ANDROID && !UNITY_EDITOR
+		_spaceLoader.url += ".android.unity3d";
+		#elif UNITY_IPHONE  && !UNITY_EDITOR
+		_spaceLoader.url += ".ios.unity3d";
+		#else
+		_spaceLoader.url += ".ios.unity3d";
+		#endif
+		
+		Debug.Log("Url set to:" + _spaceLoader.url);
 
 		Debug.Log("StartManager");
 
@@ -55,15 +68,20 @@ public class Manager : MonoBehaviour {
 
 		if (_space == null) return;
 
-		CloseSpace();
+		_spaceLoader.StartLoading(_space._textureName, _space.gameObject.GetComponent<Renderer>());
 
+	}
+
+	public void RoomLoaded(SpaceObj _space){
+		CloseSpace();
+		
 		_snd.clip = _space._sound;
 		_snd.Play();
 		_spaceInfo.text = _space._name + "\n" + _space._info;
-
+		
 		_activeSpace = _space;
 		_activeSpace.gameObject.SetActive(true);
-
+		
 		Debug.Log("OpenSpace");
 	}
 

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class LogoController : MonoBehaviour {
 
@@ -10,14 +11,39 @@ public class LogoController : MonoBehaviour {
 
 	public string levelName;
 	AsyncOperation async;
+
+	public Text _preloadText;
+
+	public ParticleSystem _smoke;
 	
 	void Start () {
-		Cardboard.SDK.OnTrigger += Launch;
+
+		if (gameObject.GetComponent<LoadBundle>()){
+			gameObject.GetComponent<LoadBundle>().StartPreloading(this);
+		}else{
+			Cardboard.SDK.OnTrigger += Launch;
+		}
+
+		//InvokeRepeating("SetRandomSmoke", 0.0f, 1.0f);
+
 		//StartLoading();
+	}
+
+	void SetRandomSmoke(){
+		_smoke.startColor = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
 	}
 	
 	void Update () {
 	
+	}
+
+	public void PreloadStart(){
+		_preloadText.text = "Загрузка пространства...";
+	}
+
+	public void PreloadEnd(){
+		Cardboard.SDK.OnTrigger += Launch;
+		_preloadText.text = "Щелкните триггером для входа.";
 	}
 
 	public void StartLoading() {
@@ -44,6 +70,14 @@ public class LogoController : MonoBehaviour {
 //
 //		Debug.Log("Loading complete");
 //	}
+
+	public void MainInView(){
+		Debug.Log("See...");
+	}
+
+	public void MainOutView(){
+		Debug.Log("Dont See...");
+	}
 
 	void Launch(){
 		StartFade();

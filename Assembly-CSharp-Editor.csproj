@@ -68,6 +68,7 @@
      <Compile Include="Assets\InControl\Source\Touch\Editor\TouchTrackControlEditor.cs" />
      <Compile Include="Assets\Lightbeam\Scripts\Editor\LightbeamEditor.cs" />
      <Compile Include="Assets\Reporter\Editor\ReporterEditor.cs" />
+     <Compile Include="Assets\Scripts\BundlesManager\Editor\CreateAssetBundles.cs" />
      <None Include="Assets\Cardboard\Legacy\Resources\SkyboxMesh.shader" />
      <None Include="Assets\InControl\Readme\README.txt" />
      <None Include="Assets\Flipper.shader" />
