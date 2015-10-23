@@ -14,6 +14,27 @@ public class Manager : MonoBehaviour {
 	public Text _spaceInfo;
 
 	void Start () {
+			
+		if (PlayerPrefs.HasKey("cardboard_enabled")){
+			int _keyvar = PlayerPrefs.GetInt("cardboard_enabled");
+			if (_keyvar == 0){
+				Cardboard.SDK.VRModeEnabled = false;
+				GameObject.Find("Info").SetActive(false);
+
+				GameObject.Find("MenuVR").SetActive(false);
+			}else{
+				if (_mouseControl != null){
+					_mouseControl.enabled = false;
+				}
+
+				GameObject.Find("Canvas360").SetActive(false);
+				Cardboard.SDK.VRModeEnabled = true;
+			}
+		}
+
+		if (Application.loadedLevelName == "MainRoom"){
+			_spaceInfo = GameObject.Find("SpaceInfoLabel").GetComponent<Text>();
+		}
 
 		_spaceLoader._manager = this;
 
@@ -29,11 +50,11 @@ public class Manager : MonoBehaviour {
 
 		Debug.Log("StartManager");
 
-#if !UNITY_EDITOR
-		if (_mouseControl != null){
-			_mouseControl.enabled = false;
-		}
-#endif
+//#if !UNITY_EDITOR
+//		if (_mouseControl != null){
+//			_mouseControl.enabled = false;
+//		}
+//#endif
 
 		_snd = gameObject.AddComponent<AudioSource>();
 		_snd.playOnAwake = false;
@@ -83,6 +104,10 @@ public class Manager : MonoBehaviour {
 		_activeSpace.gameObject.SetActive(true);
 		
 		Debug.Log("OpenSpace");
+	}
+
+	public void GoToStartScreen(){
+		Application.LoadLevel("StartScreen");
 	}
 
 	void CloseSpace(){

@@ -2,13 +2,14 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\BundlesManager\LoadBundle.cs">
     <Files>
-      <File FileName="Assets\Scripts\BundlesManager\LoadBundle.cs" Line="109" Column="4" />
+      <File FileName="Assets\Scripts\BundlesManager\LoadBundle.cs" Line="59" Column="15" />
       <File FileName="Assets\Scripts\SpaceObj.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Manager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Manager.cs" Line="25" Column="51" />
       <File FileName="Assets\Scripts\BundlesManager\Editor\CreateAssetBundles.cs" Line="1" Column="1" />
       <File FileName="Assets\iTween\iTween.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\LogoController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\LogoController.cs" Line="76" Column="3" />
       <File FileName="Assets\Cardboard\Scripts\GazeInputModule.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CardboardDeviceSet.cs" Line="51" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

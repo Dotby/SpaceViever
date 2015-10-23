@@ -79,7 +79,12 @@ public class LogoController : MonoBehaviour {
 		Debug.Log("Dont See...");
 	}
 
-	void Launch(){
+	public void Launch(){
+
+		if (GameObject.Find("ModeSelector")){
+			return;
+		}
+
 		StartFade();
 		AudioSource.PlayClipAtPoint(_launchSound, Vector3.zero);
 	}

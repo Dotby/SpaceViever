@@ -25,6 +25,7 @@ public class LoadBundle : MonoBehaviour
 	float _blackFade = 1.0f;
 	float _alphaFade = 0.0f;
 
+
 //	void Awake(){
 //	
 ////		#if   UNITY_ANDROID && !UNITY_EDITOR
